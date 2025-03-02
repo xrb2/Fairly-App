@@ -82,7 +82,7 @@
             const productList = document.getElementById('product-list');
             productList.innerHTML = '<p class="loading">Loading products...</p>';
             try {
-                const url = `http://localhost:3000/api/prices${searchQuery ? `?search=${encodeURIComponent(searchQuery)}` : ''}`;
+                const url = `https://fairly-backend-305z.onrender.com/api/prices${searchQuery ? `?search=${encodeURIComponent(searchQuery)}` : ''}`;                
                 const response = await fetch(url);
                 products = await response.json();
                 renderProducts();
