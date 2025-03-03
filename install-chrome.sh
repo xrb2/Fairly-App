@@ -1,1 +1,1 @@
-install-chrome.sh
+./install-chrome.sh
