@@ -33,7 +33,8 @@ async function scrapePrice(url, selector) {
   try {
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required for Render/Heroku
+      executablePath: process.env.CHROME_EXECUTABLE_PATH || '/usr/bin/chromium-browser', // Use Render’s Chrome
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'] // Extra args for stability
     });
     const page = await browser.newPage();
     // Set a common user agent to avoid bot detection
