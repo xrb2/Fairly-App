@@ -1,5 +1,5 @@
 const express = require('express');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const app = express();
 const port = process.env.PORT || 3000; // Use environment port for Render/Heroku
 
@@ -22,7 +22,7 @@ const pinkTaxProducts = [
 
 // CORS middleware to allow GitHub Pages frontend requests
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // Update to your GitHub Pages URL (e.g., 'https://your-username.github.io') for production
+  res.header('Access-Control-Allow-Origin', 'https://xrb2.github.io'); // Update to your GitHub Pages URL (e.g., 'https://your-username.github.io') for production
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
@@ -33,7 +33,8 @@ async function scrapePrice(url, selector) {
   try {
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'] // Required for Render/Heroku
+      executablePath: process.env.CHROME_EXECUTABLE_PATH || '/usr/bin/chromium-browser', // Use Render’s Chrome
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'] // Extra args for stability
     });
     const page = await browser.newPage();
     // Set a common user agent to avoid bot detection
