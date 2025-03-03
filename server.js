@@ -22,7 +22,7 @@ const pinkTaxProducts = [
 
 // CORS middleware to allow GitHub Pages frontend requests
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://xrb2.github.io/Fairly-App/'); // Update to your GitHub Pages URL (e.g., 'https://your-username.github.io') for production
+  res.header('Access-Control-Allow-Origin', 'https://xrb2.github.io'); // Update to your GitHub Pages URL (e.g., 'https://your-username.github.io') for production
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
